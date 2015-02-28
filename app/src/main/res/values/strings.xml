@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="app_name">IBEIS</string>
+    <string name="action_settings">Settings</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="my_pictures">My Pictures</string>
+    <string name="gps_loading">Obtaining GPS position...</string>
+    <string name="gps_available">GPS position available</string>
+    <string name="gps_not_enabled">GPS service not enabled</string>
+    <string name="gps_alert_message">Enable GPS service on your device.</string>
+    <string name="title_activity_individual_recognition">Individual Recognition</string>
+    <string name="title_activity_my_pictures">My Pictures</string>
+    <string name="title_activity_my_picture_detail">Picture Detail</string>
+    <string name="my_pictures_map_view">Map View</string>
+    <string name="title_activity_my_pictures_map">Map View</string>
+    <string name="title_activity_select_location">Select Location</string>
+    <string name="location_selected">Submit</string>
+
+</resources>

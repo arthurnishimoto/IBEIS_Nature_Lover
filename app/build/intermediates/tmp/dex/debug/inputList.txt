@@ -1,0 +1,6 @@
+C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\classes\debug
+C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-bd0d620b50cf9ffd3813cf9e804f656ea7d1dba5.jar
+C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-47f7a7ec2e968abd2a5d7197501df58bc0859de7.jar
+C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-1a98b8961abbf133fba20b81f1f4d444595a575a.jar
+C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-20978a83fec78ff1777ede189ad60a42d96274c8.jar
+C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-11fa69a3ac4c5cc6e2f3f8b9c8cb57d0f7395577.jar
