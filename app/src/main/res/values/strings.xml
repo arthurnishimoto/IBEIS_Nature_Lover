@@ -9,7 +9,13 @@
     <string name="gps_loading">Obtaining GPS position...</string>
     <string name="gps_available">GPS position available</string>
     <string name="gps_not_enabled">GPS service not enabled</string>
+    <string name="gps_alert_title">GPS is not active</string>
     <string name="gps_alert_message">Enable GPS service on your device.</string>
+    <string name="gps_alert_neg">Ignore</string>
+    <string name="gps_alert_pos">Settings</string>
+    <string name="no_location_alert_title">Invalid location</string>
+    <string name="no_location_alert_message">Pictures can be taken only at IBEIS supported areas.</string>
+    <string name="no_location_alert_btn">Got it.</string>
     <string name="title_activity_individual_recognition">Individual Recognition</string>
     <string name="title_activity_my_pictures">My Pictures</string>
     <string name="title_activity_my_picture_detail">Picture Detail</string>

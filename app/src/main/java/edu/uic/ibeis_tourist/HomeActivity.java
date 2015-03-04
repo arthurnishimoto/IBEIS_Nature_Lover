@@ -30,7 +30,6 @@ import edu.uic.ibeis_tourist.utils.FileUtils;
 
 
 public class HomeActivity extends ActionBarActivity {
-
     private static final String CUR_LAT = "currentLatitude";
     private static final String CUR_LON = "currentLongitude";
     private static final String IMG_FILE_NAME = "imageFileName";
@@ -179,16 +178,16 @@ public class HomeActivity extends ActionBarActivity {
 
     public void showGpsAlertDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle("GPS is not active");
+        alertDialog.setTitle(R.string.gps_alert_title);
         alertDialog.setMessage(R.string.gps_alert_message);
 
-        alertDialog.setNegativeButton("Ignore", new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(R.string.gps_alert_neg, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
         });
 
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(R.string.gps_alert_pos, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog,int which) {
                 startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
             }
@@ -196,9 +195,25 @@ public class HomeActivity extends ActionBarActivity {
         alertDialog.show();
     }
 
+    public void showInvalidLocationAlertDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(R.string.no_location_alert_title);
+        alertDialog.setMessage(R.string.no_location_alert_message);
+
+        alertDialog.setNegativeButton(R.string.no_location_alert_btn, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+    }
+
     public void takePicture(View v) {
         if (!gpsEnabled) {
             showGpsAlertDialog();
+            return;
+        }
+        else if (location == null) {
+            showInvalidLocationAlertDialog();
             return;
         }
 
@@ -236,12 +251,9 @@ public class HomeActivity extends ActionBarActivity {
         individualRecognitionIntent.putExtra("location", location);
         individualRecognitionIntent.putExtra("fileName", pictureFileName);
         individualRecognitionIntent.putExtra("dateTime", new GregorianCalendar().getTimeInMillis());
+        individualRecognitionIntent.putExtra("lat", currentLatitude.toString());
+        individualRecognitionIntent.putExtra("lon", currentLongitude.toString());
 
-        if (currentLatitude != null && currentLongitude != null) {
-            individualRecognitionIntent.putExtra("positionAvailable", true);
-            individualRecognitionIntent.putExtra("lat", currentLatitude);
-            individualRecognitionIntent.putExtra("lon", currentLongitude);
-        }
         startActivity(individualRecognitionIntent);
     }
 
@@ -259,10 +271,6 @@ public class HomeActivity extends ActionBarActivity {
         findViewById(R.id.gps_position_available).setVisibility(View.GONE);
         findViewById(R.id.gps_not_enabled_text).setVisibility(View.GONE);
         findViewById(R.id.take_picture).setEnabled(false);
-
-        if(location != null) {
-            findViewById(R.id.detected_location_text).setVisibility(View.GONE);
-        }
     }
 
     private void gpsDisabled() {
@@ -285,13 +293,11 @@ public class HomeActivity extends ActionBarActivity {
         System.out.println("locationDetected: " + locationDetected);
         if(!locationDetected) {
             localDb = new LocalDatabase();
-            System.out.println("position: (" + lat + ", " + lon + ")");
             localDb.getCurrentLocation(new LatLng(lat, lon), this);
         }
         else {
             findViewById(R.id.gps_progress_bar).setVisibility(View.GONE);
             findViewById(R.id.gps_position_available).setVisibility(View.VISIBLE);
-            findViewById(R.id.detected_location_text).setVisibility(View.VISIBLE);
             findViewById(R.id.gps_not_enabled_text).setVisibility(View.GONE);
             findViewById(R.id.take_picture).setEnabled(true);
         }
@@ -310,7 +316,6 @@ public class HomeActivity extends ActionBarActivity {
             detectedLocationText.setVisibility(View.VISIBLE);
         }
         else {
-            detectedLocationText.setText("");
             detectedLocationText.setVisibility(View.GONE);
         }
         findViewById(R.id.gps_not_enabled_text).setVisibility(View.GONE);

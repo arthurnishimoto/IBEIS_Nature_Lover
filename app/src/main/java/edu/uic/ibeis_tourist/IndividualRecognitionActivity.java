@@ -61,11 +61,12 @@ public class IndividualRecognitionActivity extends ActionBarActivity {
             String lat = savedInstanceState.getString(CUR_LAT);
             String lon = savedInstanceState.getString(CUR_LON);
 
-            if(lat != null) {
+            if(lat != null && lon != null) {
                 currentLatitude = Double.parseDouble(lat);
-            }
-            if(lon != null) {
                 currentLongitude = Double.parseDouble(lon);
+            }
+            else {
+                // TODO Throw Exception
             }
         }
         else {
@@ -74,9 +75,15 @@ public class IndividualRecognitionActivity extends ActionBarActivity {
             fileName = intent.getStringExtra("fileName");
             dateTime.setTimeInMillis(intent.getLongExtra("dateTime", 0));
 
-            if (intent.getBooleanExtra("positionAvailable", false)) {
-                currentLatitude = intent.getDoubleExtra("lat", 0);
-                currentLongitude = intent.getDoubleExtra("lon", 0);
+            String lat = intent.getStringExtra("lat");
+            String lon = intent.getStringExtra("lon");
+
+            if(lat != null && lon != null) {
+                currentLatitude = Double.parseDouble(lat);
+                currentLongitude = Double.parseDouble(lon);
+            }
+            else {
+                // TODO Throw Exception
             }
         }
 

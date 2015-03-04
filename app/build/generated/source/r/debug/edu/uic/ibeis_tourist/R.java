@@ -1903,20 +1903,26 @@ containing a value of this type.
         public static final int decline=0x7f0b0031;
         public static final int google_maps_key=0x7f0b0032;
         public static final int gps_alert_message=0x7f0b0033;
-        public static final int gps_available=0x7f0b0034;
-        public static final int gps_loading=0x7f0b0035;
-        public static final int gps_not_enabled=0x7f0b0036;
-        public static final int hello_world=0x7f0b0037;
-        public static final int my_pictures=0x7f0b0038;
-        public static final int my_pictures_map_view=0x7f0b0039;
-        public static final int store_picture_message=0x7f0b003a;
-        public static final int store_picture_title=0x7f0b003b;
-        public static final int take_picture=0x7f0b003c;
-        public static final int title_activity_individual_recognition=0x7f0b003d;
-        public static final int title_activity_my_picture_detail=0x7f0b003e;
-        public static final int title_activity_my_pictures=0x7f0b003f;
-        public static final int title_activity_my_pictures_map=0x7f0b0040;
-        public static final int wallet_buy_button_place_holder=0x7f0b0041;
+        public static final int gps_alert_neg=0x7f0b0034;
+        public static final int gps_alert_pos=0x7f0b0035;
+        public static final int gps_alert_title=0x7f0b0036;
+        public static final int gps_available=0x7f0b0037;
+        public static final int gps_loading=0x7f0b0038;
+        public static final int gps_not_enabled=0x7f0b0039;
+        public static final int hello_world=0x7f0b003a;
+        public static final int my_pictures=0x7f0b003b;
+        public static final int my_pictures_map_view=0x7f0b003c;
+        public static final int no_location_alert_btn=0x7f0b003d;
+        public static final int no_location_alert_message=0x7f0b003e;
+        public static final int no_location_alert_title=0x7f0b003f;
+        public static final int store_picture_message=0x7f0b0040;
+        public static final int store_picture_title=0x7f0b0041;
+        public static final int take_picture=0x7f0b0042;
+        public static final int title_activity_individual_recognition=0x7f0b0043;
+        public static final int title_activity_my_picture_detail=0x7f0b0044;
+        public static final int title_activity_my_pictures=0x7f0b0045;
+        public static final int title_activity_my_pictures_map=0x7f0b0046;
+        public static final int wallet_buy_button_place_holder=0x7f0b0047;
     }
     public static final class style {
         /**  Customize your theme here. 

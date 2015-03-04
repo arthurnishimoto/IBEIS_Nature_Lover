@@ -35,12 +35,10 @@ public class MyPicturesMapActivity extends FragmentActivity {
 
         if (savedInstanceState != null) {
             location = savedInstanceState.getParcelable(LOCATION);
-            System.out.println("(savedInstanceState) Location: " + location.getName());
         }
         else {
             Intent intent = getIntent();
             location = intent.getParcelableExtra("location");
-            System.out.println("(getIntent) Location: " + location.getName());
         }
         setUpMapIfNeeded();
     }
