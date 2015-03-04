@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gps_loading"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
@@ -26,13 +26,22 @@
             style="?android:attr/progressBarStyleHorizontal" />
     </RelativeLayout>
 
-
     <TextView
         android:id="@+id/gps_position_available"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:text="@string/gps_available"
-        android:textSize="15sp"
+        android:textSize="12sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/detected_location_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp"
         android:visibility="gone"/>
 
     <TextView
@@ -41,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="@string/gps_not_enabled"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:visibility="gone"/>
 
     <LinearLayout
@@ -67,6 +76,5 @@
             android:onClick="viewMyPictures"
             style="?android:attr/borderlessButtonStyle" />
     </LinearLayout>
-
 
 </RelativeLayout>

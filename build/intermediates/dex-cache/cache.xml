@@ -23,18 +23,18 @@
         <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-20978a83fec78ff1777ede189ad60a42d96274c8.jar" />
     </item>
     <item
-        jar="C:\Users\Alessandro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-bd0d620b50cf9ffd3813cf9e804f656ea7d1dba5.jar" />
-    </item>
-    <item
         jar="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
         <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-47f7a7ec2e968abd2a5d7197501df58bc0859de7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alessandro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-bd0d620b50cf9ffd3813cf9e804f656ea7d1dba5.jar" />
     </item>
 
 </items>

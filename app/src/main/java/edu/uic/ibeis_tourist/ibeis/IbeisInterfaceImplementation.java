@@ -3,6 +3,8 @@ package edu.uic.ibeis_tourist.ibeis;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.GregorianCalendar;
 
 import edu.uic.ibeis_tourist.exceptions.MatchNotFoundException;
@@ -52,8 +54,7 @@ public class IbeisInterfaceImplementation implements IbeisInterface {
             PictureInfo pictureInfo = new PictureInfo();
 
             pictureInfo.setFileName(mFileName);
-            pictureInfo.setLatitude(mLatitude);
-            pictureInfo.setLongitude(mLongitude);
+            pictureInfo.setPosition(new LatLng(mLatitude, mLongitude));
             pictureInfo.setDateTime(mDateTime);
             pictureInfo.setIndividualName("Alessandro");
             pictureInfo.setIndividualSpecies("Computer Scientist");

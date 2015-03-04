@@ -13,13 +13,15 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.uic.ibeis_tourist.HomeActivity;
 import edu.uic.ibeis_tourist.IndividualRecognitionActivity;
 import edu.uic.ibeis_tourist.MyPicturesActivity;
-import edu.uic.ibeis_tourist.SelectLocationActivity;
+import edu.uic.ibeis_tourist.MyPicturesMapActivity;
 import edu.uic.ibeis_tourist.interfaces.LocalDatabaseInterface;
 import edu.uic.ibeis_tourist.model.Location;
 import edu.uic.ibeis_tourist.model.PictureInfo;
 import edu.uic.ibeis_tourist.utils.DateTimeUtils;
+import edu.uic.ibeis_tourist.utils.LocationUtils;
 
 public class LocalDatabase implements LocalDatabaseInterface {
 
@@ -46,13 +48,18 @@ public class LocalDatabase implements LocalDatabaseInterface {
     }
 
     @Override
+    public void getAllPicturesAtLocation(int locationId, Context context) {
+        new GetAllPicturesAtLocationAsyncTask(locationId, context).execute();
+    }
+
+    @Override
     public void getAllLocations(Context context) {
         new GetAllLocationsAsyncTask(context).execute();
     }
 
     @Override
-    public void getAllPicturesAtLocation(int locationId, Context context) {
-        new GetAllPicturesAtLocationAsyncTask(locationId, context).execute();
+    public void getCurrentLocation(LatLng currentPosition, Context context) {
+        new GetCurrentLocationAsyncTask(currentPosition, context).execute();
     }
 
     /**
@@ -122,8 +129,8 @@ public class LocalDatabase implements LocalDatabaseInterface {
 
             ContentValues values = new ContentValues();
             values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_FILENAME, mPictureInfo.getFileName());
-            values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LATITUDE, mPictureInfo.getLatitude());
-            values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LONGITUDE, mPictureInfo.getLongitude());
+            values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LATITUDE, mPictureInfo.getPosition().latitude);
+            values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LONGITUDE, mPictureInfo.getPosition().longitude);
             values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_DATETIME,
                        DateTimeUtils.convertToDatetimeString(mPictureInfo.getDateTime()));
             values.put(LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_INDIVIDUAL_NAME,
@@ -266,17 +273,13 @@ public class LocalDatabase implements LocalDatabaseInterface {
                         (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_INDIVIDUAL_SPECIES)));
 
                 try {
-                    pictureInfo.setLatitude(Double.parseDouble(cursor.getString(cursor.getColumnIndex
-                            (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LATITUDE))));
+                    double lat = Double.parseDouble(cursor.getString(cursor.getColumnIndex
+                                    (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LATITUDE)));
+                    double lon = Double.parseDouble(cursor.getString(cursor.getColumnIndex
+                                    (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LONGITUDE)));
+                    pictureInfo.setPosition(new LatLng(lat, lon));
                 } catch (NumberFormatException e) {
-                    pictureInfo.setLatitude(null);
-                }
-
-                try {
-                    pictureInfo.setLongitude(Double.parseDouble(cursor.getString(cursor.getColumnIndex
-                            (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LONGITUDE))));
-                } catch (NumberFormatException e) {
-                    pictureInfo.setLongitude(null);
+                    pictureInfo.setPosition(null);
                 }
 
                 pictureInfo.setDateTime(DateTimeUtils.convertToGregorianCalendar(cursor.getString
@@ -307,6 +310,10 @@ public class LocalDatabase implements LocalDatabaseInterface {
                 case "MyPicturesActivity":
                     MyPicturesActivity myPicturesActivity = (MyPicturesActivity) activity;
                     myPicturesActivity.displayPictureInfoList(pictureInfoList);
+                    break;
+                case "MyPicturesMapActivity":
+                    MyPicturesMapActivity myPicturesMapActivity = (MyPicturesMapActivity) activity;
+                    myPicturesMapActivity.showPictures(pictureInfoList);
             }
         }
     }
@@ -366,17 +373,13 @@ public class LocalDatabase implements LocalDatabaseInterface {
                         (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_INDIVIDUAL_SPECIES)));
 
                 try {
-                    pictureInfo.setLatitude(Double.parseDouble(cursor.getString(cursor.getColumnIndex
-                            (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LATITUDE))));
+                    double lat = Double.parseDouble(cursor.getString(cursor.getColumnIndex
+                            (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LATITUDE)));
+                    double lon = Double.parseDouble(cursor.getString(cursor.getColumnIndex
+                            (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LONGITUDE)));
+                    pictureInfo.setPosition(new LatLng(lat, lon));
                 } catch (NumberFormatException e) {
-                    pictureInfo.setLatitude(null);
-                }
-
-                try {
-                    pictureInfo.setLongitude(Double.parseDouble(cursor.getString(cursor.getColumnIndex
-                            (LocalDatabaseContract.PictureInfoEntry.COLUMN_NAME_LONGITUDE))));
-                } catch (NumberFormatException e) {
-                    pictureInfo.setLongitude(null);
+                    pictureInfo.setPosition(null);
                 }
 
                 pictureInfo.setDateTime(DateTimeUtils.convertToGregorianCalendar(cursor.getString
@@ -437,7 +440,6 @@ public class LocalDatabase implements LocalDatabaseInterface {
                     LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON
             };
 
-            // TODO Change Sort Order --> Suggest Closest Location
             String sortOrder = LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME + " ASC";
 
             Cursor cursor = db.query(LocalDatabaseContract.LocationEntry.TABLE_NAME, projection,
@@ -463,9 +465,12 @@ public class LocalDatabase implements LocalDatabaseInterface {
                 double neBoundLon = cursor.getDouble(cursor.getColumnIndex
                         (LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON));
 
-                LatLngBounds bounds = new LatLngBounds(new LatLng(swBoundLat, swBoundLon), new LatLng(neBoundLat, neBoundLon));
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-                location.setBounds(bounds);
+                builder.include(new LatLng(swBoundLat, swBoundLon));
+                builder.include(new LatLng(neBoundLat, neBoundLon));
+
+                location.setBounds(builder.build());
 
                 locationList.add(location);
             }
@@ -485,9 +490,96 @@ public class LocalDatabase implements LocalDatabaseInterface {
             String activityName = activity.getClass().getSimpleName();
 
             switch (activityName) {
-                case "SelectLocationActivity":
-                    SelectLocationActivity selectLocationActivity = (SelectLocationActivity) activity;
-                    selectLocationActivity.displayLocationList(locationList);
+            }
+        }
+    }
+
+    // Get All Locations
+    private class GetCurrentLocationAsyncTask extends AsyncTask<Void, Void, Location> {
+
+        private Context mContext;
+        private LatLng mPosition;
+
+        private GetCurrentLocationAsyncTask(LatLng position, Context context) {
+            mContext = context;
+            mPosition = position;
+        }
+
+        @Override
+        protected Location doInBackground(Void... params) {
+            System.out.println("LocalDatabase: GetCurrentLocation AsyncTask");
+
+            dbHelper = new LocalDatabaseOpenHelper(mContext);
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            String projection[] = {
+                    LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
+                    LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME,
+                    LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT,
+                    LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON,
+                    LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT,
+                    LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON
+            };
+
+            Cursor cursor = db.query(LocalDatabaseContract.LocationEntry.TABLE_NAME, projection,
+                    null, null, null, null, null);
+
+            List<Location> locationList = new ArrayList<>();
+
+            while (cursor.moveToNext()) {
+                Location location = new Location();
+
+                location.setId(cursor.getInt(cursor.getColumnIndex
+                        (LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID)));
+
+                location.setName(cursor.getString(cursor.getColumnIndex
+                        (LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME)));
+
+                double swBoundLat = cursor.getDouble(cursor.getColumnIndex
+                        (LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT));
+                double swBoundLon = cursor.getDouble(cursor.getColumnIndex
+                        (LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON));
+                double neBoundLat = cursor.getDouble(cursor.getColumnIndex
+                        (LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT));
+                double neBoundLon = cursor.getDouble(cursor.getColumnIndex
+                        (LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON));
+
+                LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+                builder.include(new LatLng(swBoundLat, swBoundLon));
+                builder.include(new LatLng(neBoundLat, neBoundLon));
+
+                location.setBounds(builder.build());
+
+                locationList.add(location);
+            }
+
+            Location currentLocation = null;
+
+            for (Location location : locationList) {
+                if (LocationUtils.isPositionAtLocation(mPosition, location)) {
+                    currentLocation = location;
+                    break;
+                }
+            }
+            return currentLocation;
+        }
+
+        @Override
+        protected void onPostExecute(Location currentLocation) {
+            if (mContext instanceof Activity) {
+                currentLocationDetected(currentLocation, (Activity) mContext);
+            }
+        }
+
+        private void currentLocationDetected (final Location currentLocation, final Activity activity) {
+
+            String activityName = activity.getClass().getSimpleName();
+
+            switch (activityName) {
+                case "HomeActivity":
+                    HomeActivity homeActivity = (HomeActivity) activity;
+                    homeActivity.currentLocationDetected(currentLocation);
             }
         }
     }

@@ -31,19 +31,44 @@ public class LocalDatabaseOpenHelper extends SQLiteOpenHelper {
     public void addLocations(SQLiteDatabase db) {
         ContentValues values;
 
-        // UIC campus
+        // UIC East Campus
         values = new ContentValues();
         values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID, 1);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME, "UIC campus");
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.875668);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.671639);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.879323);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.681928);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME, "UIC East Campus");
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.8591);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.6663);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.8734);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.6326);
 
         db.insert(LocalDatabaseContract.LocationEntry.TABLE_NAME,
                   LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
                   values);
 
-        // TODO Brookfield Zoo
+        // SSR
+        values = new ContentValues();
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID, 2);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME, "SSR");
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.86931);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.67987);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.87287);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.67145);
+
+        db.insert(LocalDatabaseContract.LocationEntry.TABLE_NAME,
+                LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
+                values);
+
+        // Brookfield Zoo
+        values = new ContentValues();
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID, 3);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME, "Brookfield Zoo");
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.82912);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.84460);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.83625);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.82775);
+
+        db.insert(LocalDatabaseContract.LocationEntry.TABLE_NAME,
+                LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
+                values);
+
     }
 }

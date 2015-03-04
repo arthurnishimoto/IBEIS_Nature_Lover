@@ -53,8 +53,8 @@ public class MyPicturesListAdapter extends ArrayAdapter<PictureInfo> {
         nameText.setText("Name: " + mPictureInfoList.get(position).getIndividualName());
         speciesText.setText("Species: " + mPictureInfoList.get(position).getIndividualSpecies());
         dateText.setText("When: " + DateTimeUtils.presentationFormat(mPictureInfoList.get(position).getDateTime()));
-        locationText.setText("Where: " + "(" + mPictureInfoList.get(position).getLatitude() + ", " +
-                mPictureInfoList.get(position).getLongitude() + ")");
+        locationText.setText("Where: " + "(" + mPictureInfoList.get(position).getPosition().latitude + ", " +
+                mPictureInfoList.get(position).getPosition().longitude + ")");
 
         return rowView;
     }

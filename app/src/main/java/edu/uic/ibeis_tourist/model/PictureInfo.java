@@ -3,14 +3,15 @@ package edu.uic.ibeis_tourist.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.GregorianCalendar;
 
 public class PictureInfo implements Parcelable {
     // TODO add attributes
     private String fileName;
     private GregorianCalendar dateTime;
-    private Double latitude;
-    private Double longitude;
+    private LatLng position;
     private String individualName;
     private String individualSpecies;
     private Location location;
@@ -33,20 +34,12 @@ public class PictureInfo implements Parcelable {
         this.dateTime = dateTime;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public LatLng getPosition() {
+        return position;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setPosition(LatLng position) {
+        this.position = position;
     }
 
     public String getIndividualName() {
@@ -79,8 +72,7 @@ public class PictureInfo implements Parcelable {
         fileName = in.readString();
         dateTime = new GregorianCalendar();
         dateTime.setTimeInMillis(in.readLong());
-        latitude = in.readDouble();
-        longitude = in.readDouble();
+        position = new LatLng(in.readDouble(), in.readDouble());
         individualName = in.readString();
         individualSpecies = in.readString();
         location = in.readParcelable(Location.class.getClassLoader());
@@ -95,8 +87,8 @@ public class PictureInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(fileName);
         dest.writeLong(dateTime.getTimeInMillis());
-        dest.writeDouble(latitude);
-        dest.writeDouble(longitude);
+        dest.writeDouble(position.latitude);
+        dest.writeDouble(position.longitude);
         dest.writeString(individualName);
         dest.writeString(individualSpecies);
         dest.writeParcelable(location, 0);

@@ -14,11 +14,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.GregorianCalendar;
 
-import edu.uic.ibeis_tourist.enums.GpsEvent;
 import edu.uic.ibeis_tourist.enums.ActivityRequestCode;
+import edu.uic.ibeis_tourist.enums.GpsEvent;
+import edu.uic.ibeis_tourist.interfaces.LocalDatabaseInterface;
+import edu.uic.ibeis_tourist.local_database.LocalDatabase;
 import edu.uic.ibeis_tourist.model.Location;
 import edu.uic.ibeis_tourist.services.GpsService;
 import edu.uic.ibeis_tourist.utils.FileUtils;
@@ -29,6 +34,7 @@ public class HomeActivity extends ActionBarActivity {
     private static final String CUR_LAT = "currentLatitude";
     private static final String CUR_LON = "currentLongitude";
     private static final String IMG_FILE_NAME = "imageFileName";
+    private static final String LOCATION_DETECTED = "locationDetected";
     private static final String LOCATION = "location";
 
     private Location location;
@@ -38,8 +44,11 @@ public class HomeActivity extends ActionBarActivity {
     private boolean gpsEnabled;
 
     private boolean takingPicture;
+    private boolean locationDetected;
 
     private String imageFileName;
+
+    private LocalDatabaseInterface localDb;
 
     /**
      * Broadcast receiver for GPS events
@@ -81,11 +90,8 @@ public class HomeActivity extends ActionBarActivity {
                 currentLongitude = Double.parseDouble(lon);
             }
             imageFileName = savedInstanceState.getString(IMG_FILE_NAME);
+            locationDetected = savedInstanceState.getBoolean(LOCATION_DETECTED);
             location = savedInstanceState.getParcelable(LOCATION);
-        }
-        else {
-            Intent intent = getIntent();
-            location = intent.getParcelableExtra("location");
         }
     }
 
@@ -148,6 +154,7 @@ public class HomeActivity extends ActionBarActivity {
         outState.putString(CUR_LAT, currentLatitude!=null ? currentLatitude.toString() : null);
         outState.putString(CUR_LON, currentLongitude!=null ? currentLongitude.toString() : null);
         outState.putString(IMG_FILE_NAME, imageFileName);
+        outState.putBoolean(LOCATION_DETECTED, locationDetected);
         outState.putParcelable(LOCATION, location);
 
         super.onSaveInstanceState(outState);
@@ -239,8 +246,9 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     public void viewMyPictures(View v) {
-        Intent viewMyPicturesIntent = new Intent(this, MyPicturesActivity.class);
-        startActivity(viewMyPicturesIntent);
+        Intent myPicturesIntent = new Intent(this, MyPicturesActivity.class);
+        myPicturesIntent.putExtra("location", location);
+        startActivity(myPicturesIntent);
     }
 
     private void gpsEnabled() {
@@ -251,6 +259,10 @@ public class HomeActivity extends ActionBarActivity {
         findViewById(R.id.gps_position_available).setVisibility(View.GONE);
         findViewById(R.id.gps_not_enabled_text).setVisibility(View.GONE);
         findViewById(R.id.take_picture).setEnabled(false);
+
+        if(location != null) {
+            findViewById(R.id.detected_location_text).setVisibility(View.GONE);
+        }
     }
 
     private void gpsDisabled() {
@@ -270,8 +282,37 @@ public class HomeActivity extends ActionBarActivity {
         currentLatitude = lat;
         currentLongitude = lon;
 
+        System.out.println("locationDetected: " + locationDetected);
+        if(!locationDetected) {
+            localDb = new LocalDatabase();
+            System.out.println("position: (" + lat + ", " + lon + ")");
+            localDb.getCurrentLocation(new LatLng(lat, lon), this);
+        }
+        else {
+            findViewById(R.id.gps_progress_bar).setVisibility(View.GONE);
+            findViewById(R.id.gps_position_available).setVisibility(View.VISIBLE);
+            findViewById(R.id.detected_location_text).setVisibility(View.VISIBLE);
+            findViewById(R.id.gps_not_enabled_text).setVisibility(View.GONE);
+            findViewById(R.id.take_picture).setEnabled(true);
+        }
+    }
+
+    public void currentLocationDetected(Location currentLocation) {
+        locationDetected = true;
+        location = currentLocation;
+
         findViewById(R.id.gps_progress_bar).setVisibility(View.GONE);
         findViewById(R.id.gps_position_available).setVisibility(View.VISIBLE);
+
+        TextView detectedLocationText = (TextView) findViewById(R.id.detected_location_text);
+        if (location != null) {
+            detectedLocationText.setText("Location: " + currentLocation.getName());
+            detectedLocationText.setVisibility(View.VISIBLE);
+        }
+        else {
+            detectedLocationText.setText("");
+            detectedLocationText.setVisibility(View.GONE);
+        }
         findViewById(R.id.gps_not_enabled_text).setVisibility(View.GONE);
         findViewById(R.id.take_picture).setEnabled(true);
     }

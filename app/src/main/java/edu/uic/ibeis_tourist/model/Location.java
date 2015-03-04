@@ -14,7 +14,7 @@ public class Location implements Parcelable {
 
     public Location() {}
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -48,7 +48,12 @@ public class Location implements Parcelable {
         double neBoundLat = in.readDouble();
         double neBoundLon = in.readDouble();
 
-        bounds = new LatLngBounds(new LatLng(swBoundLat, swBoundLon), new LatLng(neBoundLat, neBoundLon));
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
+        builder.include(new LatLng(swBoundLat, swBoundLon));
+        builder.include(new LatLng(neBoundLat, neBoundLon));
+
+        bounds = builder.build();
     }
 
     @Override

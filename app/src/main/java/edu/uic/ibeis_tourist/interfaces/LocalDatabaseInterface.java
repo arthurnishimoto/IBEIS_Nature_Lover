@@ -2,6 +2,8 @@ package edu.uic.ibeis_tourist.interfaces;
 
 import android.content.Context;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import edu.uic.ibeis_tourist.model.PictureInfo;
 
 public interface LocalDatabaseInterface {
@@ -45,4 +47,12 @@ public interface LocalDatabaseInterface {
      * @param context
      */
     public void getAllLocations(Context context);
+
+    /**
+     * Retrieve the location from the database corresponding to the current position, return null
+     * if no location is found
+     * @param currentPosition
+     * @param context
+     */
+    public void getCurrentLocation(LatLng currentPosition, Context context);
 }

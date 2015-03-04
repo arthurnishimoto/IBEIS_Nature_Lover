@@ -14,13 +14,18 @@ import java.util.List;
 import edu.uic.ibeis_tourist.interfaces.LocalDatabaseInterface;
 import edu.uic.ibeis_tourist.layout_adapters.MyPicturesListAdapter;
 import edu.uic.ibeis_tourist.local_database.LocalDatabase;
+import edu.uic.ibeis_tourist.model.Location;
 import edu.uic.ibeis_tourist.model.PictureInfo;
 
 //TODO Implement RecyclerView instead of ListView
 public class MyPicturesActivity extends ActionBarActivity {
 
+    private static final String LOCATION = "location";
+
     public static final int IMG_REQUESTED_HEIGHT = 200;
     public static final int IMG_REQUESTED_WIDTH = 200;
+
+    private Location location;
 
     private LocalDatabaseInterface localDb;
 
@@ -29,8 +34,22 @@ public class MyPicturesActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pictures);
 
+        if (savedInstanceState != null) {
+            location = savedInstanceState.getParcelable(LOCATION);
+        }
+        else {
+            Intent intent = getIntent();
+            location = intent.getParcelableExtra("location");
+        }
+
         localDb = new LocalDatabase();
         localDb.getAllPictures(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable(LOCATION, location);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -50,6 +69,7 @@ public class MyPicturesActivity extends ActionBarActivity {
 
             case R.id.my_pictures_map_view:
                 Intent mapViewIntent = new Intent(this, MyPicturesMapActivity.class);
+                mapViewIntent.putExtra("location", location);
                 startActivity(mapViewIntent);
 
         }
