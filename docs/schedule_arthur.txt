@@ -1,0 +1,5 @@
+Schedule and deliverable (initial draft NOT FINAL):
+	Add a settings page -- Wed 03/11 by 11pm (estimate: 2 hrs)
+	Add 'user profile' to settings page (user name) -- Thu 03/12 by 11pm (estimate: 1 hrs)
+	Add user name to images taken  -- Thu 03/12 by 11pm (estimate: 1 hrs)
+	Enable/disable GPS from settings -- Fri 03/13 by 11pm (estimate: 1 hr)
