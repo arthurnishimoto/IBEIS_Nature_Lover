@@ -1,0 +1,6 @@
+The theme should be green with bases of brown to give an earthy animal/eco-friendly feel.
+A simple two button menu, either take a picture or go look at your photos.
+This simplicity will be conveyed with a simple font, nothing eratic or wild.
+Possibly a family member of Sans Serif. (Ex. Roboto, Neoteric)
+
+Wording for two buttons should be simple, "Take Photo" and "Photo Gallery".
