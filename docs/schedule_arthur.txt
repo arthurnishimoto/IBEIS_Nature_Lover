@@ -1,5 +1,7 @@
-Schedule and deliverable (initial draft NOT FINAL):
+Schedule and deliverable:
 	Add a settings page -- Wed 03/11 by 11pm (estimate: 2 hrs)
 	Add 'user profile' to settings page (user name) -- Thu 03/12 by 11pm (estimate: 1 hrs)
 	Add user name to images taken  -- Thu 03/12 by 11pm (estimate: 1 hrs)
 	Enable/disable GPS from settings -- Fri 03/13 by 11pm (estimate: 1 hr)
+	After taking a photo, clicking on cancel goes back to camera, not home screen -- Sat 03/14 by 11pm (estimate: 2 hr)
+	After taking a photo, clicking on camera saves the last image (currently does not)  -- Sat 03/14 by 11pm (estimate: 2 hr)
