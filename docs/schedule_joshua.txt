@@ -1,0 +1,7 @@
+Schedule and deliverable
+	Setup schedule to include class deadlines -- Thu 03/12 by 11pm (estimate: 1hr)
+	Create presentation slides for class turn in -- Sun 03/15 by 11pm (estimate: 2 hrs)
+	Create and upload an icon logo for the application -- Fri 03/13 by 11pm (estimate: 1hr)
+	Troubleshoot GPS positioning through android emulator -- Sat 03/14 by 11pm (estimate: 2hrs)
+	Troubleshoot map view crashing on android emulator -- Sun 03/15 by 11pm (estimate: 4hrs)
+	
