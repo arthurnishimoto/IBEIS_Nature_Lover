@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-11fa69a3ac4c5cc6e2f3f8b9c8cb57d0f7395577.jar" />
-    </item>
-    <item
-        jar="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-1a98b8961abbf133fba20b81f1f4d444595a575a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jar="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\classes-20978a83fec78ff1777ede189ad60a42d96274c8.jar" />
+        <dex dex="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\classes-f0c68a285041846f4b3cc6751e1a19764fd3eedc.jar" />
     </item>
     <item
-        jar="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jar="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-47f7a7ec2e968abd2a5d7197501df58bc0859de7.jar" />
+        <dex dex="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-642587bbc8f1893ec39050d546f3e7e04d253f65.jar" />
     </item>
     <item
-        jar="C:\Users\Alessandro\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\exploded-aar\com.google.android.gms\play-services\6.5.87\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\classes-623ca5fda1024f78515e521a7a90f65d877166ff.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jed\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Alessandro\AndroidStudioProjects\IBEIS-tourist\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-bd0d620b50cf9ffd3813cf9e804f656ea7d1dba5.jar" />
+        <dex dex="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-c85fe2704cc4a0c40e3789b2e68e7871b2a8582c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="C:\Users\Jed\Documents\Learning Items\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\classes-c6dbc4ccc9da5a229a876decb80e1fa654a85992.jar" />
     </item>
 
 </items>
