@@ -69,7 +69,8 @@ public class MyPictureDetailActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent settingsView = new Intent(this, SettingsActivity.class);
+            startActivity(settingsView);
         }
 
         return super.onOptionsItemSelected(item);

@@ -65,7 +65,8 @@ public class MyPicturesActivity extends ActionBarActivity {
         switch (id) {
 
             case R.id.action_settings:
-                return true;
+                Intent settingsView = new Intent(this, SettingsActivity.class);
+                startActivity(settingsView);
 
             case R.id.my_pictures_map_view:
                 Intent mapViewIntent = new Intent(this, MyPicturesMapActivity.class);
