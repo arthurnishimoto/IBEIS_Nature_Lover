@@ -171,7 +171,9 @@ public class HomeActivity extends ActionBarActivity {
 
         switch (id) {
             case R.id.action_settings:
-                return true;
+                Intent settingsView = new Intent(this, SettingsActivity.class);
+                settingsView.putExtra("location", location);
+                startActivity(settingsView);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -261,6 +263,12 @@ public class HomeActivity extends ActionBarActivity {
         Intent myPicturesIntent = new Intent(this, MyPicturesActivity.class);
         myPicturesIntent.putExtra("location", location);
         startActivity(myPicturesIntent);
+    }
+
+    public void viewSettings(View v) {
+        Intent settingsIntent = new Intent(this, SettingsActivity.class);
+        settingsIntent.putExtra("location", location);
+        startActivity(settingsIntent);
     }
 
     private void gpsEnabled() {

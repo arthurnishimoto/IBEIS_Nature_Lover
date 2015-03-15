@@ -75,6 +75,7 @@
             android:textSize="30sp"
             android:onClick="viewMyPictures"
             style="?android:attr/borderlessButtonStyle" />
+
     </LinearLayout>
 
 </RelativeLayout>

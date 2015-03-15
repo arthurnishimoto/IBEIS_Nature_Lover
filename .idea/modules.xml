@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IBEIS-tourist.iml" filepath="$PROJECT_DIR$/IBEIS-tourist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IBEIS_Nature_Lover.iml" filepath="$PROJECT_DIR$/IBEIS_Nature_Lover.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
