@@ -42,19 +42,27 @@ public class MyPicturesListAdapter extends ArrayAdapter<PictureInfo> {
         TextView locationText = (TextView) rowView.findViewById(R.id.row_location);
 
         try {
+
             picture.setImageBitmap(
                     FileUtils.getImageBitmap(
                             mPictureInfoList.get(position).getFileName(),
                             MyPicturesActivity.IMG_REQUESTED_HEIGHT, MyPicturesActivity.IMG_REQUESTED_WIDTH, Bitmap.Config.RGB_565));
+
+
         } catch (IOException e) {
             //TODO handle exception: remove image entry from database
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            //TODO handle exception: remove image entry from database
+            e.printStackTrace();
+            System.out.println(mPictureInfoList.get(position).getFileName());
         }
+
         nameText.setText("Name: " + mPictureInfoList.get(position).getIndividualName());
         speciesText.setText("Species: " + mPictureInfoList.get(position).getIndividualSpecies());
         dateText.setText("When: " + DateTimeUtils.presentationFormat(mPictureInfoList.get(position).getDateTime()));
         locationText.setText("Where: " + "(" + mPictureInfoList.get(position).getPosition().latitude + ", " +
-                mPictureInfoList.get(position).getPosition().longitude + ")");
+        mPictureInfoList.get(position).getPosition().longitude + ")");
 
         return rowView;
     }

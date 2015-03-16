@@ -35,10 +35,10 @@ public class LocalDatabaseOpenHelper extends SQLiteOpenHelper {
         values = new ContentValues();
         values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID, 1);
         values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME, "UIC East Campus");
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.8591);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.6663);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.8734);
-        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.6326);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.86707);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.65329);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.874397);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.645236);
 
         db.insert(LocalDatabaseContract.LocationEntry.TABLE_NAME,
                   LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
@@ -70,5 +70,17 @@ public class LocalDatabaseOpenHelper extends SQLiteOpenHelper {
                 LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
                 values);
 
+        // UIC South Campus
+        values = new ContentValues();
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID, 4);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_LOCATION_NAME, "UIC South Campus");
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LAT, 41.86382);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_SW_BOUND_LON, -87.65099);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LAT, 41.867127);
+        values.put(LocalDatabaseContract.LocationEntry.COLUMN_NAME_NE_BOUND_LON, -87.645065);
+
+        db.insert(LocalDatabaseContract.LocationEntry.TABLE_NAME,
+                LocalDatabaseContract.LocationEntry.COLUMN_NAME_ID,
+                values);
     }
 }
