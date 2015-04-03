@@ -207,6 +207,8 @@ public class HomeActivity extends ActionBarActivity {
                 dialog.cancel();
             }
         });
+
+        alertDialog.show();
     }
 
     public void takePicture(View v) {
@@ -215,6 +217,7 @@ public class HomeActivity extends ActionBarActivity {
             return;
         }
         else if (location == null) {
+            System.out.println("INvaaallliiid");
             showInvalidLocationAlertDialog();
             return;
         }
