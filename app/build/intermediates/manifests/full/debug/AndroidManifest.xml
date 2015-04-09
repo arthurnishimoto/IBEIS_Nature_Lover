@@ -92,6 +92,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.uic.ibeis_tourist.MyPicturesActivity" />
         </activity>
+        <activity
+            android:name="edu.uic.ibeis_tourist.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

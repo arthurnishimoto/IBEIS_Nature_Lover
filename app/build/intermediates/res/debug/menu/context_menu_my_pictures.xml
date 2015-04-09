@@ -4,4 +4,4 @@
         android:id="@+id/my_pictures_context_delete"
         android:title="Delete Items"
         android:icon="@android:drawable/ic_menu_delete" />
-</menu><!-- From: file:/C:/Users/Jed/Documents/Learning%20Items/IBEIS_Nature_Lover/app/src/main/res/menu/context_menu_my_pictures.xml -->
+</menu><!-- From: file:/C:/Users/Joshua/Desktop/CS%20422/Zookeeper/IBEIS_Nature_Lover/app/src/main/res/menu/context_menu_my_pictures.xml -->

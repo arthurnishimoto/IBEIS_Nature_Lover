@@ -18,9 +18,9 @@ public class PictureTabsActivity extends FragmentActivity implements ActionBar.T
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pictures_tabs);
+        setContentView(R.layout.activity_my_pictures);//.activity_pictures_tabs);
 
-        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.action_bar);//.pager);
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
