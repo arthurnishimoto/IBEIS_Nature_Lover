@@ -1,6 +1,0 @@
-C:\Users\Joshua\Desktop\CS 422\Zookeeper\IBEIS_Nature_Lover\app\build\intermediates\classes\debug
-C:\Users\Joshua\Desktop\CS 422\Zookeeper\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-0f95c1b62a66b9bc5d6b3e5361947d4c4a6b71f3.jar
-C:\Users\Joshua\Desktop\CS 422\Zookeeper\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-ca56f526787b77bb3147636c23a6b6ccd896a4fa.jar
-C:\Users\Joshua\Desktop\CS 422\Zookeeper\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\classes-c5e838f1b8be86bc8c4ecf18afbbdbf70c926cac.jar
-C:\Users\Joshua\Desktop\CS 422\Zookeeper\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\classes-2601120c211788e880f862928d4f9eda937b1e3a.jar
-C:\Users\Joshua\Desktop\CS 422\Zookeeper\IBEIS_Nature_Lover\app\build\intermediates\pre-dexed\debug\classes-ffcb84679aac53d0a771e83d8ee707e583708115.jar
