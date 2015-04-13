@@ -217,7 +217,6 @@ public class HomeActivity extends ActionBarActivity {
             return;
         }
         else if (location == null) {
-            System.out.println("INvaaallliiid");
             showInvalidLocationAlertDialog();
             return;
         }
@@ -266,6 +265,13 @@ public class HomeActivity extends ActionBarActivity {
         Intent myPicturesIntent = new Intent(this, MyPicturesActivity.class);
         myPicturesIntent.putExtra("location", location);
         startActivity(myPicturesIntent);
+    }
+
+    public void viewTabs (View v)
+    {
+        Intent myTabsIntent = new Intent(this, PictureTabsActivity.class);
+        myTabsIntent.putExtra("location", location);
+        startActivity(myTabsIntent);
     }
 
     public void viewSettings(View v) {

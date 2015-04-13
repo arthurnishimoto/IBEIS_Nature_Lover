@@ -1,70 +1,67 @@
 package edu.uic.ibeis_tourist;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
+
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
 
-import edu.uic.ibeis_tourist.layout_adapters.TabsPagerAdapter;
+public class PictureTabsActivity extends ActionBarActivity implements ActionBar.TabListener {
 
-public class PictureTabsActivity extends FragmentActivity implements ActionBar.TabListener{
-    private ViewPager viewPager;
-    private TabsPagerAdapter mAdapter;
-    private ActionBar actionBar;
 
-    private String[] tabs = {"Overview, Map View"};
+    private Fragment fragment;
+    // Declaring our tabs and the corresponding fragments.
+    ActionBar.Tab picTab, mapTab;
+    Fragment picFragTab = new MyPicturesFragment();
+    Fragment mapFragTab = new MyPicturesMapFragment();
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_pictures);//.activity_pictures_tabs);
+        setContentView(R.layout.activity_tabs);
 
-        viewPager = (ViewPager) findViewById(R.id.action_bar);//.pager);
-        actionBar = getActionBar();
-        mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
-        viewPager.setAdapter(mAdapter);
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        // Set the Action Bar to use tabs for navigation
+        ActionBar ab = getSupportActionBar();
+        ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        picTab = ab.newTab();
+        //mapTab = ab.newTab();
+        picTab.setTabListener(new TabListener(picFragTab));
+        //mapTab.setTabListener(new TabListener(mapFragTab));
 
-        for(String tab_name : tabs)
-        {
-            actionBar.addTab(actionBar.newTab().setText(tab_name).setTabListener(this));
-        }
+        // Add three tabs to the Action Bar for display
+        ab.addTab(picTab);
+       // ab.addTab(mapTab);
 
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-            @Override
-            public void onPageSelected(int position) {
-                // on changing the page
-                // make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
-        });
+        ab.addTab(ab.newTab().setText("Map View").setTabListener(this));
     }
 
     @Override
-    public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate menu from menu resource (res/menu/main)
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 
+    // Implemented from ActionBar.TabListener
     @Override
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {
-        // on tab selected
-        // show respected fragment view
-        viewPager.setCurrentItem(tab.getPosition());
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        // This is called when a tab is selected.
     }
 
+    // Implemented from ActionBar.TabListener
     @Override
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        // This is called when a previously selected tab is unselected.
+    }
+
+    // Implemented from ActionBar.TabListener
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        // This is called when a previously selected tab is selected again.
     }
 
 }

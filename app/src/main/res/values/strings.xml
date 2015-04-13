@@ -21,5 +21,6 @@
     <string name="title_activity_my_picture_detail">Picture Detail</string>
     <string name="my_pictures_map_view">Map View</string>
     <string name="title_activity_my_pictures_map">Map View</string>
+    <string name="my_tabs">My Pictures</string>
 
 </resources>
