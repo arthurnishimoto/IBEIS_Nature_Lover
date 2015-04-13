@@ -77,6 +77,7 @@
             android:onClick="viewMyPictures"
             style="?android:attr/borderlessButtonStyle" />
 
+        <!-- tabs
         <Button
             android:id="@+id/my_tabs"
             android:layout_width="wrap_content"
@@ -85,7 +86,7 @@
             android:textSize="30sp"
             android:onClick="viewTabs"
             style="?android:attr/borderlessButtonStyle" />
-
+         -->
     </LinearLayout>
 
 </RelativeLayout>
