@@ -21,7 +21,6 @@ import edu.uic.ibeis_tourist.model.PictureInfo;
 public class MyPicturesActivity extends ActionBarActivity {
 
     private static final String LOCATION = "location";
-00
     public static final int IMG_REQUESTED_HEIGHT = 200;
     public static final int IMG_REQUESTED_WIDTH = 200;
 
