@@ -38,7 +38,7 @@ public class IbeisInterfaceImplementation implements IbeisInterface {
         private Context mContext;
 
         private IdentifyIndividualAsyncTask(String fileName, Double latitude, Double longitude,
-                                    GregorianCalendar dateTime, Location location, Context context) {
+                                            GregorianCalendar dateTime, Location location, Context context) {
             mFileName = fileName;
             mLatitude = latitude;
             mLongitude = longitude;
@@ -56,8 +56,8 @@ public class IbeisInterfaceImplementation implements IbeisInterface {
             pictureInfo.setFileName(mFileName);
             pictureInfo.setPosition(new LatLng(mLatitude, mLongitude));
             pictureInfo.setDateTime(mDateTime);
-            pictureInfo.setIndividualName("Alessandro");
-            pictureInfo.setIndividualSpecies("Computer Scientist");
+            pictureInfo.setIndividualName(randomName());
+            pictureInfo.setIndividualSpecies(randomSpeciesName());
             pictureInfo.setLocation(mLocation);
 
             return pictureInfo;
@@ -70,6 +70,101 @@ public class IbeisInterfaceImplementation implements IbeisInterface {
 
             LocalDatabase localDb = new LocalDatabase();
             localDb.addPicture(pictureInfo, mContext);
+        }
+
+        String randomName() {
+            String[] names = {
+                    "Jebediah", // Kerbals
+                    "Bill",
+                    "Bob",
+                    "Archibald",
+                    "Lanbur",
+                    "Bartfrid",
+                    "Sparky", // Pokemon Yellow Trade
+                    "Miles",
+                    "Richie",
+                    "Gurio",
+                    "Spike",
+                    "Buffy",
+                    "Cezanne",
+                    "Sticky",
+                    "Kanto", // More Pokemon
+                    "Johto",
+                    "Lyn", // Avatar / Korra
+                    "Suyin",
+                    "Toph",
+                    "Kuvira",
+                    "Kya",
+                    "Hiroshi",
+                    "Asami",
+                    "Suki",
+                    "Ozai",
+                    "Birdie", // Random baby name generator
+                    "Aubrey",
+                    "Christeen",
+                    "Joel",
+                    "Jerrold",
+                    "Donovan",
+                    "Gene",
+                    "Mathew",
+                    "Olga",
+                    "Demetra",
+                    "Fernande",
+                    "Pauletta",
+                    "Annemarie",
+                    "Jerilyn",
+                    "Barbara",
+                    "Laila",
+                    "Hellen",
+                    "Tamesha",
+                    "Delsie",
+                    "Aide",
+                    "Alejandro",
+                    "Jenelle",
+                    "Timmy",
+                    "Crystle",
+                    "Lorenzo",
+                    "Molly",
+                    "Jerrell",
+                    "Lauren",
+                    "Marhta",
+                    "Kristina"};
+
+            try {
+                return names[(int) (Math.random() * names.length - 1)];
+            } catch (ArrayIndexOutOfBoundsException e) {
+            }
+            return "Alessandro";
+        }
+
+        String randomSpeciesName() {
+            String[] names = {
+                    "Giraffe", // Animals at Brookfield
+                    "Zebra",
+                    "Tiger",
+                    "Leopard",
+                    "Lion",
+                    "Polar Bear",
+                    "American Bison",
+                    "Grizzly Bear",
+                    "Mexican Grey Wolf",
+                    "Wombat",
+                    "Black Rhinoceros",
+                    "Polar Bear Dog", // Korra
+                    "Ferret",
+                    "Furret", // Pokemon
+                    "Aridos",
+                    "Girafarig",
+                    "Delibird",
+                    "Stantler",
+                    "Bison"
+            };
+
+            try {
+                return names[(int) (Math.random() * names.length - 1)];
+            } catch (ArrayIndexOutOfBoundsException e) {
+            }
+            return "Computer Scientist";
         }
     }
 }
