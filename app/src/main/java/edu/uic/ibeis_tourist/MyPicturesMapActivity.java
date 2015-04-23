@@ -1,8 +1,12 @@
 package edu.uic.ibeis_tourist;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,13 +14,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.uic.ibeis_tourist.interfaces.LocalDatabaseInterface;
 import edu.uic.ibeis_tourist.local_database.LocalDatabase;
 import edu.uic.ibeis_tourist.model.Location;
 import edu.uic.ibeis_tourist.model.PictureInfo;
+import edu.uic.ibeis_tourist.utils.FileUtils;
 
 public class MyPicturesMapActivity extends FragmentActivity {
 
@@ -27,8 +36,11 @@ public class MyPicturesMapActivity extends FragmentActivity {
 
     private Location location;
 
+    static private ArrayList<Marker> markers;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        markers = new ArrayList<Marker>();
         System.out.println("MyPicturesMapActivity created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pictures_map);
@@ -76,6 +88,8 @@ public class MyPicturesMapActivity extends FragmentActivity {
             // Try to obtain the map from the SupportMapFragment.
             mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.my_pictures_map))
                     .getMap();
+            mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
             // Check if we were successful in obtaining the map.
             if (mMap != null) {
                 localDb = new LocalDatabase();
@@ -117,11 +131,68 @@ public class MyPicturesMapActivity extends FragmentActivity {
 
     public void addMarkers(List<PictureInfo> pictureInfoList) {
         for (PictureInfo p : pictureInfoList) {
-            Marker marker = mMap.addMarker(new MarkerOptions()
-                    .position(p.getPosition())
-                    .title(p.getIndividualName())
-                    .snippet("Species: " + p.getIndividualSpecies()));
-            marker.showInfoWindow();
+            try {
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(p.getPosition())
+                        .title(p.getIndividualName())
+                        .snippet("Species: " + p.getIndividualSpecies())
+                        .icon(BitmapDescriptorFactory.fromBitmap(FileUtils.getImageBitmap(
+                                p.getFileName(),
+                                128,
+                                128,
+                                Bitmap.Config.RGB_565
+                        )))
+                        );
+                marker.showInfoWindow();
+                markers.add(marker);
+            }
+            catch(IOException e){
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(p.getPosition())
+                        .title(p.getIndividualName())
+                        .snippet("Species: " + p.getIndividualSpecies())
+                        );
+                marker.showInfoWindow();
+                markers.add(marker);
+            }
+        }
+    }
+
+    private class CustomInfoWindowAdapter implements InfoWindowAdapter {
+
+        private View view;
+
+        public CustomInfoWindowAdapter() {
+            view = getLayoutInflater().inflate(R.layout.custom_mapwindow_layout,
+                    null);
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            return null;
+        }
+
+        @Override
+        public View getInfoWindow(final Marker marker) {
+
+            final String title = marker.getTitle();
+            final TextView titleUi = ((TextView) view.findViewById(R.id.title));
+            if (title != null) {
+                titleUi.setText(title);
+            } else {
+                titleUi.setText("");
+            }
+
+            final String snippet = marker.getSnippet();
+            final TextView snippetUi = ((TextView) view
+                    .findViewById(R.id.snippet));
+            if (snippet != null) {
+                snippetUi.setText(snippet);
+            } else {
+                snippetUi.setText("");
+            }
+
+            return view;
         }
     }
 }
