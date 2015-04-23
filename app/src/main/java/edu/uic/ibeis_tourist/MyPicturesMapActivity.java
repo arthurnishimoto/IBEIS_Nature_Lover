@@ -20,6 +20,7 @@ import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import edu.uic.ibeis_tourist.interfaces.LocalDatabaseInterface;
@@ -37,11 +38,11 @@ public class MyPicturesMapActivity extends FragmentActivity {
 
     private Location location;
 
-    static private ArrayList<CustomMapMarker> markers;
+    static private HashMap<String,CustomMapMarker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        markers = new ArrayList<CustomMapMarker>();
+        markers = new HashMap<String,CustomMapMarker>();
         System.out.println("MyPicturesMapActivity created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pictures_map);
@@ -51,7 +52,15 @@ public class MyPicturesMapActivity extends FragmentActivity {
         }
         else {
             Intent intent = getIntent();
+
+            // Sets the map location
             location = intent.getParcelableExtra("location");
+
+            // Opens the selected info window
+            //String filename = intent.getParcelableExtra("individual");
+            //CustomMapMarker m = markers.get(filename);
+            //if( m != null )
+            //    m.getMarker().showInfoWindow();
         }
         setUpMapIfNeeded();
     }
@@ -158,7 +167,7 @@ public class MyPicturesMapActivity extends FragmentActivity {
                         )))
                         );
                 marker.showInfoWindow();
-                markers.add(new CustomMapMarker(marker,p));
+                markers.put(p.getFileName(), new CustomMapMarker(marker,p));
             }
             catch(IOException e){
                 Marker marker = mMap.addMarker(new MarkerOptions()
@@ -167,7 +176,7 @@ public class MyPicturesMapActivity extends FragmentActivity {
                         .snippet("Species: " + p.getIndividualSpecies())
                         );
                 marker.showInfoWindow();
-                markers.add(new CustomMapMarker(marker,p));
+                markers.put(p.getFileName(), new CustomMapMarker(marker,p));
             }
         }
     }

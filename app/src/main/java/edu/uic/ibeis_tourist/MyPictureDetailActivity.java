@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Button;
 
 import java.io.IOException;
 
@@ -51,6 +53,16 @@ public class MyPictureDetailActivity extends ActionBarActivity {
             //TODO handle exception
             e.printStackTrace();
         }
+
+        final Button button = (Button) findViewById(R.id.picture_detail_show_map_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent mapViewIntent = new Intent(v.getContext() , MyPicturesMapActivity.class);
+                mapViewIntent.putExtra("location", pictureInfo.getLocation());
+                mapViewIntent.putExtra("individual", pictureInfo.getFileName());
+                startActivity(mapViewIntent);
+            }
+        });
     }
 
     @Override
