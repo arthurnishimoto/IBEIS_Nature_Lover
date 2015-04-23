@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,11 +37,11 @@ public class MyPicturesMapActivity extends FragmentActivity {
 
     private Location location;
 
-    static private ArrayList<Marker> markers;
+    static private ArrayList<CustomMapMarker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        markers = new ArrayList<Marker>();
+        markers = new ArrayList<CustomMapMarker>();
         System.out.println("MyPicturesMapActivity created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pictures_map);
@@ -65,6 +66,19 @@ public class MyPicturesMapActivity extends FragmentActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelable(LOCATION, location);
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //switch (id) {
+            //case R.id.map_detail_button:
+            //    Intent myPictureDetailIntent = new Intent(this, MyPictureDetailActivity.class);
+                //myPictureDetailIntent.putExtra("pictureInfo", pictureInfoList.get(position));
+             //   startActivity(myPictureDetailIntent);
+        //}
+        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -135,7 +149,7 @@ public class MyPicturesMapActivity extends FragmentActivity {
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(p.getPosition())
                         .title(p.getIndividualName())
-                        .snippet("Species: " + p.getIndividualSpecies())
+                        .snippet("Species: " + p.getIndividualSpecies() + "\nLocation: " + p.getLocation().getName())
                         .icon(BitmapDescriptorFactory.fromBitmap(FileUtils.getImageBitmap(
                                 p.getFileName(),
                                 128,
@@ -144,7 +158,7 @@ public class MyPicturesMapActivity extends FragmentActivity {
                         )))
                         );
                 marker.showInfoWindow();
-                markers.add(marker);
+                markers.add(new CustomMapMarker(marker,p));
             }
             catch(IOException e){
                 Marker marker = mMap.addMarker(new MarkerOptions()
@@ -153,8 +167,24 @@ public class MyPicturesMapActivity extends FragmentActivity {
                         .snippet("Species: " + p.getIndividualSpecies())
                         );
                 marker.showInfoWindow();
-                markers.add(marker);
+                markers.add(new CustomMapMarker(marker,p));
             }
+        }
+    }
+
+    private class CustomMapMarker {
+        private Marker marker;
+        private PictureInfo info;
+
+        public CustomMapMarker(Marker marker, PictureInfo info)
+        {
+            this.marker = marker;
+            this.info = info;
+        }
+
+        public Marker getMarker()
+        {
+            return marker;
         }
     }
 

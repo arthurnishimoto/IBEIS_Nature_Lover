@@ -18,7 +18,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:id="@+id/title"
@@ -28,14 +29,25 @@
             android:singleLine="true"
             android:textColor="#ff000000"
             android:textSize="14dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:text="Animal Name" />
 
         <TextView
             android:id="@+id/snippet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ff7f7f7f"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:text="snippet" />
+
+        <!--Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="See Details"
+            android:id="@+id/map_detail_button"
+            android:clickable="true" /-->
     </LinearLayout>
+
+
 
 </RelativeLayout>
