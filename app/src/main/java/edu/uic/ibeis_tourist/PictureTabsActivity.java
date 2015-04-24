@@ -69,9 +69,9 @@ public class PictureTabsActivity extends ActionBarActivity implements ActionBar.
 
         switch (id) {
 
-            case R.id.action_settings:
-                Intent settingsView = new Intent(this, SettingsActivity.class);
-                startActivity(settingsView);
+            //case R.id.action_settings:
+            //    Intent settingsView = new Intent(this, SettingsActivity.class);
+            //    startActivity(settingsView);
 
         }
         return super.onOptionsItemSelected(item);

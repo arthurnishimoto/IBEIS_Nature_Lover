@@ -80,10 +80,10 @@ public class MyPictureDetailActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent settingsView = new Intent(this, SettingsActivity.class);
-            startActivity(settingsView);
-        }
+        //if (id == R.id.action_settings) {
+        //    Intent settingsView = new Intent(this, SettingsActivity.class);
+        // /   startActivity(settingsView);
+        //}
 
         return super.onOptionsItemSelected(item);
     }

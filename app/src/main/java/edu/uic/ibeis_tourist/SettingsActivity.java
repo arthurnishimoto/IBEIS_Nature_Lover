@@ -66,10 +66,10 @@ public class SettingsActivity extends ActionBarActivity {
 
         switch (id) {
 
-            case R.id.action_settings:
-                Intent settingsView = new Intent(this, SettingsActivity.class);
-                startActivity(settingsView);
-                break;
+            //case R.id.action_settings:
+            //    Intent settingsView = new Intent(this, SettingsActivity.class);
+            //    startActivity(settingsView);
+            //    break;
         }
         return super.onOptionsItemSelected(item);
     }

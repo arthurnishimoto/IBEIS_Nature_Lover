@@ -24,4 +24,6 @@
     <string name="my_tabs">My Pictures</string>
     <string name="show_on_map">Show on Map</string>
     <string name="individual_image">Image of Individual</string>
+    <string name="back_to_pictures">Back to My Pictures</string>
+    <string name="take_another_picture">Take Another Picture</string>
 </resources>

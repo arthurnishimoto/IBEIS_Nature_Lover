@@ -138,6 +138,12 @@ public class MyPicturesMapActivity extends FragmentActivity {
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
     }
 
+    public void viewMyPictures(View v) {
+        Intent myPicturesIntent = new Intent(this, MyPicturesActivity.class);
+        myPicturesIntent.putExtra("location", location);
+        startActivity(myPicturesIntent);
+    }
+
     public void showPictures(List<PictureInfo> pictureInfoList) {
         LatLngBounds bounds;
 

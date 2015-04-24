@@ -170,10 +170,10 @@ public class HomeActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_settings:
-                Intent settingsView = new Intent(this, SettingsActivity.class);
-                settingsView.putExtra("location", location);
-                startActivity(settingsView);
+            //case R.id.action_settings:
+            //    Intent settingsView = new Intent(this, SettingsActivity.class);
+            //    settingsView.putExtra("location", location);
+            //    startActivity(settingsView);
         }
         return super.onOptionsItemSelected(item);
     }
