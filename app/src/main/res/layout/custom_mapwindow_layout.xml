@@ -4,16 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="#C19C66"
     >
-
-    <ImageView
-        android:id="@+id/map_window_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="5dp"
-        android:adjustViewBounds="true" >
-    </ImageView>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,13 +22,24 @@
             android:textColor="#ff000000"
             android:textSize="14dp"
             android:textStyle="bold"
-            android:text="Animal Name" />
+            android:text="Animal Name"
+            android:layout_below="@+id/map_window_image"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:id="@+id/map_window_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:adjustViewBounds="true" >
+        </ImageView>
 
         <TextView
             android:id="@+id/snippet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ff7f7f7f"
+            android:textColor="#ff000000"
             android:textSize="14dp"
             android:text="snippet" />
 
@@ -47,7 +50,6 @@
             android:id="@+id/map_detail_button"
             android:clickable="true" /-->
     </LinearLayout>
-
 
 
 </RelativeLayout>

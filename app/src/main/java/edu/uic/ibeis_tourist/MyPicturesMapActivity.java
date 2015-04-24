@@ -154,21 +154,21 @@ public class MyPicturesMapActivity extends FragmentActivity {
 
     public void addMarkers(List<PictureInfo> pictureInfoList) {
         for (PictureInfo p : pictureInfoList) {
-            try {
+            //try {
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(p.getPosition())
-                        .title(p.getIndividualName())
+                        .title(p.getFileName()) // We use file name so custom window adapter can set it later (and access other info)
                         .snippet("Species: " + p.getIndividualSpecies() + "\nLocation: " + p.getLocation().getName())
-                        .icon(BitmapDescriptorFactory.fromBitmap(FileUtils.getImageBitmap(
-                                p.getFileName(),
-                                128,
-                                128,
-                                Bitmap.Config.RGB_565
-                        )))
+                        //.icon(BitmapDescriptorFactory.fromBitmap(FileUtils.getImageBitmap(
+                        //        p.getFileName(),
+                        //        128,
+                        //        128,
+                        //        Bitmap.Config.RGB_565
+                        //)))
                         );
-                marker.showInfoWindow();
-                markers.put(p.getFileName(), new CustomMapMarker(marker,p));
-            }
+            markers.put(p.getFileName(), new CustomMapMarker(marker,p));
+            marker.showInfoWindow();
+            /*}
             catch(IOException e){
                 Marker marker = mMap.addMarker(new MarkerOptions()
                         .position(p.getPosition())
@@ -177,7 +177,7 @@ public class MyPicturesMapActivity extends FragmentActivity {
                         );
                 marker.showInfoWindow();
                 markers.put(p.getFileName(), new CustomMapMarker(marker,p));
-            }
+            }*/
         }
     }
 
@@ -194,6 +194,11 @@ public class MyPicturesMapActivity extends FragmentActivity {
         public Marker getMarker()
         {
             return marker;
+        }
+
+        public PictureInfo getInfo()
+        {
+            return info;
         }
     }
 
@@ -215,9 +220,10 @@ public class MyPicturesMapActivity extends FragmentActivity {
         public View getInfoWindow(final Marker marker) {
 
             final String title = marker.getTitle();
+            CustomMapMarker customMarker = markers.get(title);
             final TextView titleUi = ((TextView) view.findViewById(R.id.title));
-            if (title != null) {
-                titleUi.setText(title);
+            if (title != null && customMarker.getInfo() != null ) {
+                titleUi.setText(customMarker.getInfo().getIndividualName());
             } else {
                 titleUi.setText("");
             }
@@ -231,6 +237,16 @@ public class MyPicturesMapActivity extends FragmentActivity {
                 snippetUi.setText("");
             }
 
+            final ImageView imageUi = ((ImageView) view.findViewById(R.id.map_window_image));
+            try{
+                imageUi.setImageBitmap(FileUtils.getImageBitmap(
+                        customMarker.getInfo().getFileName(),
+                                128,
+                                128,
+                                Bitmap.Config.RGB_565
+                ));
+            }
+            catch(IOException e){}
             return view;
         }
     }
