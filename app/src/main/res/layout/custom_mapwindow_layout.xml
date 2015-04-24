@@ -11,7 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/title"
@@ -20,18 +21,17 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="#ff000000"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:text="Animal Name"
-            android:layout_below="@+id/map_window_image"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:text=""/>
 
         <ImageView
             android:id="@+id/map_window_image"
+            android:contentDescription="@+id/map_window_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
             android:adjustViewBounds="true" >
         </ImageView>
 
@@ -40,15 +40,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#ff000000"
-            android:textSize="14dp"
-            android:text="snippet" />
+            android:textSize="14sp"
+            android:text="" />
 
+        <!-- As window views are not live, it is discouraged to add interactive elements to windows -->
         <!--Button
+            android:id="@+id/picture_detail_show_map_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="See Details"
-            android:id="@+id/map_detail_button"
-            android:clickable="true" /-->
+            android:text="Show Details"
+            android:clickable="true"
+            android:background="@drawable/button_home_state"
+            android:layout_below="@+id/snippet"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:enabled="true" /-->
     </LinearLayout>
 
 

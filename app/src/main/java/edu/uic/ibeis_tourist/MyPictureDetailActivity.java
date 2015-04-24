@@ -59,7 +59,7 @@ public class MyPictureDetailActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent mapViewIntent = new Intent(v.getContext() , MyPicturesMapActivity.class);
                 mapViewIntent.putExtra("location", pictureInfo.getLocation());
-                mapViewIntent.putExtra("individual", pictureInfo.getFileName());
+                mapViewIntent.putExtra("info", pictureInfo);
                 startActivity(mapViewIntent);
             }
         });

@@ -22,5 +22,6 @@
     <string name="my_pictures_map_view">Map View</string>
     <string name="title_activity_my_pictures_map">Map View</string>
     <string name="my_tabs">My Pictures</string>
-
+    <string name="show_on_map">Show on Map</string>
+    <string name="individual_image">Image of Individual</string>
 </resources>

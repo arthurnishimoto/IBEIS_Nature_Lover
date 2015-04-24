@@ -37,12 +37,14 @@ public class MyPicturesMapActivity extends FragmentActivity {
     private LocalDatabaseInterface localDb;
 
     private Location location;
+    private String currentMarkerName;
 
     static private HashMap<String,CustomMapMarker> markers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        markers = new HashMap<String,CustomMapMarker>();
+        if( markers == null )
+            markers = new HashMap<String,CustomMapMarker>();
         System.out.println("MyPicturesMapActivity created");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_pictures_map);
@@ -54,13 +56,16 @@ public class MyPicturesMapActivity extends FragmentActivity {
             Intent intent = getIntent();
 
             // Sets the map location
-            location = intent.getParcelableExtra("location");
+            //location = intent.getParcelableExtra("location");
 
-            // Opens the selected info window
-            //String filename = intent.getParcelableExtra("individual");
-            //CustomMapMarker m = markers.get(filename);
-            //if( m != null )
-            //    m.getMarker().showInfoWindow();
+            PictureInfo info = intent.getParcelableExtra("info");
+
+            if( info != null ) {
+                location = info.getLocation();
+
+                System.out.println("Loading location from picture detail");
+                currentMarkerName = info.getFileName();
+            }
         }
         setUpMapIfNeeded();
     }
@@ -147,7 +152,6 @@ public class MyPicturesMapActivity extends FragmentActivity {
             }
             bounds = builder.build();
         }
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 0));
         addMarkers(pictureInfoList);
     }
@@ -156,18 +160,22 @@ public class MyPicturesMapActivity extends FragmentActivity {
         for (PictureInfo p : pictureInfoList) {
             //try {
                 Marker marker = mMap.addMarker(new MarkerOptions()
-                        .position(p.getPosition())
-                        .title(p.getFileName()) // We use file name so custom window adapter can set it later (and access other info)
-                        .snippet("Species: " + p.getIndividualSpecies() + "\nLocation: " + p.getLocation().getName())
+                                .position(p.getPosition())
+                                .title(p.getFileName()) // We use file name so custom window adapter can set it later (and access other info)
+                                .snippet("Species: " + p.getIndividualSpecies() + "\nLocation: " + p.getLocation().getName())
                         //.icon(BitmapDescriptorFactory.fromBitmap(FileUtils.getImageBitmap(
                         //        p.getFileName(),
                         //        128,
                         //        128,
                         //        Bitmap.Config.RGB_565
                         //)))
-                        );
+                );
             markers.put(p.getFileName(), new CustomMapMarker(marker,p));
-            marker.showInfoWindow();
+            if( currentMarkerName != null && p.getFileName().compareTo(currentMarkerName) == 0 ) {
+                System.out.println("showInfoWindow");
+                marker.showInfoWindow();
+            }
+
             /*}
             catch(IOException e){
                 Marker marker = mMap.addMarker(new MarkerOptions()
@@ -241,9 +249,9 @@ public class MyPicturesMapActivity extends FragmentActivity {
             try{
                 imageUi.setImageBitmap(FileUtils.getImageBitmap(
                         customMarker.getInfo().getFileName(),
-                                128,
-                                128,
-                                Bitmap.Config.RGB_565
+                        128,
+                        128,
+                        Bitmap.Config.RGB_565
                 ));
             }
             catch(IOException e){}
