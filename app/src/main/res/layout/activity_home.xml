@@ -66,7 +66,8 @@
             android:text="@string/take_picture"
             android:textSize="30sp"
             android:onClick="takePicture"
-            style="?android:attr/borderlessButtonStyle" />
+            android:background="@drawable/button_home"
+            />
 
         <Button
             android:id="@+id/my_pictures"
@@ -75,9 +76,10 @@
             android:text="@string/my_pictures"
             android:textSize="30sp"
             android:onClick="viewMyPictures"
-            style="?android:attr/borderlessButtonStyle" />
+            android:background="@drawable/button_home"
+            android:layout_marginTop="30px" />
 
-        <!-- tabs
+        <!--
         <Button
             android:id="@+id/my_tabs"
             android:layout_width="wrap_content"
@@ -86,7 +88,7 @@
             android:textSize="30sp"
             android:onClick="viewTabs"
             style="?android:attr/borderlessButtonStyle" />
-         -->
+        -->
     </LinearLayout>
 
 </RelativeLayout>

@@ -25,7 +25,8 @@ public class TabListener extends ActionBarActivity implements ActionBar.TabListe
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         // This is called when a tab is selected.
-        fragmentTransaction.replace(R.layout.activity_tabs, fragment);
+        fragmentTransaction.replace(R.id.activity_tabs, fragment);
+
     }
 
     // Implemented from ActionBar.TabListener
